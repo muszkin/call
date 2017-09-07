@@ -1,0 +1,43 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: muszk
+ * Date: 09.06.2017
+ * Time: 12:32
+ */
+
+namespace CallBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Queue
+ * @package CallBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="queue")
+ */
+class Queue
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name="queue_id",type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="queue",type="string")
+     */
+    private $queue;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CallBundle\Entity\Team",inversedBy="queues",cascade={"persist"})
+     * @ORM\JoinColumn(name="team_id",referencedColumnName="team_id")
+     */
+    private $team;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="CallBundle\Entity\Agent",mappedBy="queues",cascade={"persist"})
+     */
+    private $agents;
+}

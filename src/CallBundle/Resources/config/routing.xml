@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<routes xmlns="http://symfony.com/schema/routing"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://symfony.com/schema/routing
+        http://symfony.com/schema/routing/routing-1.0.xsd">
+    <route id="index.action" path="/">
+        <default key="_controller">CallBundle:Main:index</default>
+    </route>
+    <route id="read.webhook.action" path="/webhook">
+        <default key="_controller">CallBundle:WebHook:readWebHook</default>
+    </route>
+</routes>

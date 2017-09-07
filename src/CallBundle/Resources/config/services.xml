@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="call.parse.webhook.service" class="CallBundle\Services\ParseWebHookService">
+            <argument type="service" id="doctrine.orm.default_entity_manager"/>
+            <argument type="service" id="logger"/>
+            <argument type="service" id="mailer"/>
+            <argument type="service" id="templating.engine.twig"/>
+            <argument type="service" id="call.thulium.service"/>
+        </service>
+        <service id="call.thulium.service" class="CallBundle\Services\ThuliumService">
+            <argument>%thulium_url%</argument>
+            <argument>%thulium_login%</argument>
+            <argument>%thulium_password%</argument>
+        </service>
+    </services>
+</container>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CallBundle\Entity\Team" table="team">
+    <id name="id" type="integer" column="team_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="team" type="string" column="team" precision="0" scale="0" nullable="false"/>
+    <one-to-many field="agents" target-entity="CallBundle\Entity\Agent" mapped-by="team" fetch="LAZY"/>
+    <one-to-many field="queues" target-entity="CallBundle\Entity\Queue" mapped-by="team" fetch="LAZY"/>
+  </entity>
+</doctrine-mapping>

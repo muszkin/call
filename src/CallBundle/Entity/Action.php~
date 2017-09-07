@@ -1,0 +1,37 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: muszk
+ * Date: 09.06.2017
+ * Time: 12:32
+ */
+
+namespace CallBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Action
+ * @package CallBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="action")
+ */
+class Action
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name="action_id",type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="action",type="string")
+     */
+    private $action;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CallBundle\Entity\Call",mappedBy="action",cascade={"persist"})
+     */
+    private $calls;
+}

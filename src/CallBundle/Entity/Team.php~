@@ -1,0 +1,43 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: muszk
+ * Date: 09.06.2017
+ * Time: 14:27
+ */
+
+namespace CallBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Team
+ * @package CallBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="team")
+ */
+class Team
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name="team_id",type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="team",type="string")
+     */
+    private $team;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CallBundle\Entity\Agent",mappedBy="team")
+     */
+    private $agents;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CallBundle\Entity\Queue",mappedBy="team")
+     */
+    private $queues;
+
+}

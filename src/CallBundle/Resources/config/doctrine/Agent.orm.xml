@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CallBundle\Entity\Agent" table="agent">
+    <id name="id" type="integer" column="agent_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="fullname" type="string" column="fullname" precision="0" scale="0" nullable="false"/>
+    <field name="firstname" type="string" column="firstname" precision="0" scale="0" nullable="false"/>
+    <field name="lastname" type="string" column="lastname" precision="0" scale="0" nullable="false"/>
+    <field name="thulium_login" type="string" column="thulium_login" precision="0" scale="0" nullable="false"/>
+    <field name="sip" type="integer" column="sip" precision="0" scale="0" nullable="false"/>
+    <one-to-many field="calls" target-entity="CallBundle\Entity\Call" mapped-by="agent" fetch="LAZY">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </one-to-many>
+    <many-to-one field="team" target-entity="CallBundle\Entity\Team" inversed-by="agents" fetch="LAZY">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+      <join-columns>
+        <join-column name="team_id" referenced-column-name="team_id" nullable="1"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="queues" target-entity="CallBundle\Entity\Queue" inversed-by="agents" fetch="LAZY">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+      <join-table name="agent_queue">
+        <join-columns>
+          <join-column name="agent_id" referenced-column-name="agent_id" on-delete="CASCADE"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="queue_id" referenced-column-name="queue_id" on-delete="CASCADE"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

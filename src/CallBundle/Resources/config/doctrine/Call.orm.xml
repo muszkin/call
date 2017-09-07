@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CallBundle\Entity\Call" table="`call`">
+    <id name="call_id" type="integer" column="call_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="conversation_id" type="string" column="conversation_id" precision="0" scale="0" nullable="true"/>
+    <field name="date" type="datetime" column="date" precision="0" scale="0" nullable="true"/>
+    <field name="chat_queue_id" type="integer" column="chat_queue_id" precision="0" scale="0" nullable="true"/>
+    <field name="client_name" type="string" column="client_name" precision="0" scale="0" nullable="true"/>
+    <field name="client_email" type="string" column="client_email" precision="0" scale="0" nullable="true"/>
+    <field name="connection_id" type="string" column="connection_id" precision="0" scale="0" nullable="true"/>
+    <field name="source_number" type="string" column="source_number" precision="0" scale="0" nullable="true"/>
+    <field name="destination_number" type="string" column="destination_number" precision="0" scale="0" nullable="true"/>
+    <field name="duration" type="integer" column="duration" precision="0" scale="0" nullable="true"/>
+    <field name="billsec" type="integer" column="billsec" precision="0" scale="0" nullable="true"/>
+    <field name="filename" type="string" column="filename" precision="0" scale="0" nullable="true"/>
+    <field name="source_name" type="string" column="source_name" precision="0" scale="0" nullable="true"/>
+    <field name="id" type="string" column="id" precision="0" scale="0" nullable="true"/>
+    <field name="name" type="string" column="name" precision="0" scale="0" nullable="true"/>
+    <field name="record_id" type="integer" column="record_id" precision="0" scale="0" nullable="true"/>
+    <field name="phone_number" type="string" column="phone_number" precision="0" scale="0" nullable="true"/>
+    <field name="system_status" type="string" column="system_status" precision="0" scale="0" nullable="true"/>
+    <field name="status_id" type="integer" column="status_id" precision="0" scale="0" nullable="true"/>
+    <field name="pause_id" type="integer" column="pause_id" precision="0" scale="0" nullable="true"/>
+    <field name="customer_id" type="string" column="customer_id" precision="0" scale="0" nullable="true"/>
+    <field name="previous_pause_id" type="integer" column="previous_pause_id" precision="0" scale="0" nullable="true"/>
+    <field name="unknow_field" type="string" column="unknow_field" precision="0" scale="0" nullable="true"/>
+    <many-to-one field="action" target-entity="CallBundle\Entity\Action" inversed-by="calls" fetch="LAZY">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+      <join-columns>
+        <join-column name="action_id" referenced-column-name="action_id" on-delete="CASCADE" nullable="1"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="agent" target-entity="CallBundle\Entity\Agent" inversed-by="calls" fetch="LAZY">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+      <join-columns>
+        <join-column name="agent_id" referenced-column-name="agent_id" nullable="1"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="queue" target-entity="CallBundle\Entity\Queue" inversed-by="calls" fetch="LAZY">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+      <join-columns>
+        <join-column name="queue_id" referenced-column-name="queue_id" on-delete="CASCADE" nullable="1"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

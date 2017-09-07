@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="CallBundle\Entity\Queue" table="queue">
+    <id name="id" type="integer" column="queue_id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="queue" type="string" column="queue" precision="0" scale="0" nullable="false"/>
+    <many-to-one field="team" target-entity="CallBundle\Entity\Team" inversed-by="queues" fetch="LAZY">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+      <join-columns>
+        <join-column name="team_id" referenced-column-name="team_id" nullable="1"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-many field="agents" target-entity="CallBundle\Entity\Agent" mapped-by="queues" fetch="LAZY">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+    </many-to-many>
+  </entity>
+</doctrine-mapping>

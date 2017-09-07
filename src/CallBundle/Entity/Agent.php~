@@ -1,0 +1,71 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: muszk
+ * Date: 09.06.2017
+ * Time: 12:32
+ */
+
+namespace CallBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Agent
+ * @package CallBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="agent")
+ */
+class Agent
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name="agent_id",type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="fullname",type="string")
+     */
+    private $fullname;
+
+    /**
+     * @ORM\Column(name="firstname",type="string")
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(name="lastname",type="string")
+     */
+    private $lastname;
+
+    /**
+     * @ORM\Column(name="thulium_login",type="string")
+     */
+    private $thulium_login;
+
+    /**
+     * @ORM\Column(name="sip",type="integer")
+     */
+    private $sip;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CallBundle\Entity\Team",inversedBy="agents",cascade={"persist"})
+     * @ORM\JoinColumn(name="team_id",referencedColumnName="team_id")
+     */
+    private $team;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CallBundle\Entity\Call",mappedBy="agent",cascade={"persist"})
+     */
+    private $calls;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="CallBundle\Entity\Queue",inversedBy="agents",cascade={"persist"})
+     * @ORM\JoinTable(name="agents_queues")
+     */
+    private $queues;
+
+
+}

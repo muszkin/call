@@ -1,0 +1,147 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: muszk
+ * Date: 09.06.2017
+ * Time: 12:32
+ */
+
+namespace CallBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Class Call
+ * @package CallBundle\Entity
+ * @ORM\Entity
+ * @ORM\Table(name="call")
+ */
+class Call
+{
+    /**
+     * @ORM\Id
+     * @ORM\Column(name="call_id",type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $call_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CallBundle\Entity\Action",inversedBy="calls",cascade={"persist"})
+     * @ORM\JoinColumn(name="action_id",referencedColumnName="action_id",onDelete="CASCADE")
+     */
+    private $action;
+
+    /**
+     * @ORM\Column(name="conversation_id",type="string",nullable=true)
+     */
+    private $conversation_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CallBundle\Entity\Agent",inversedBy="calls",cascade={"persist"})
+     * @ORM\JoinColumn(name="agent_id",referencedColumnName="agent_id")
+     */
+    private $agent;
+
+    /**
+     * @ORM\Column(name="date",type="datetime")
+     */
+    private $date;
+
+    /**
+     * @ORM\Column(name="chat_queue_id",type="integer",nullable=true)
+     */
+    private $chat_queue_id;
+
+    /**
+     * @ORM\Column(name="client_name",type="string",nullable=true)
+     */
+    private $client_name;
+
+    /**
+     * @ORM\Column(name="client_email",type="string",nullable=true)
+     */
+    private $client_email;
+
+    /**
+     * @ORM\Column(name="connection_id",type="string",nullable=true)
+     */
+    private $connection_id;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CallBundle\Entity\Queue",inversedBy="calls",cascade={"persist"})
+     * @ORM\JoinColumn(name="queue_id",referencedColumnName="queue_id",onDelete="CASCADE",nullable=true)
+     */
+    private $queue;
+
+    /**
+     * @ORM\Column(name="source_number",type="string",nullable=true)
+     */
+    private $source_number;
+
+    /**
+     * @ORM\Column(name="destination_number",type="string",nullable=true)
+     */
+    private $destination_number;
+
+    /**
+     * @ORM\Column(name="duration",type="integer",nullable=true)
+     */
+    private $duration;
+
+    /**
+     * @ORM\Column(name="billsec",type="integer",nullable=true)
+     */
+    private $billsec;
+
+    /**
+     * @ORM\Column(name="filename",type="string",nullable=true)
+     */
+    private $filename;
+
+    /**
+     * @ORM\Column(name="source_name",type="string",nullable=true)
+     */
+    private $source_name;
+
+    /**
+     * @ORM\Column(name="id",type="string",nullable=true)
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(name="name",type="string",nullable=true)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(name="record_id",type="integer",nullable=true)
+     */
+    private $record_id;
+
+    /**
+     * @ORM\Column(name="phone_number",type="string",nullable=true)
+     */
+    private $phone_number;
+
+    /**
+     * @ORM\Column(name="system_status",type="string",nullable=true)
+     */
+    private $system_status;
+
+    /**
+     * @ORM\Column(name="status_id",type="integer",nullable=true)
+     */
+    private $status_id;
+
+    /**
+     * @ORM\Column(name="pause_id",type="integer",nullable=true)
+     */
+    private $pause_id;
+
+    /**
+     * @ORM\Column(name="previous_pause_id",type="integer",nullable=true)
+     */
+    private $previous_pause_id;
+
+
+}
