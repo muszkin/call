@@ -26,6 +26,8 @@
     <field name="customer_id" type="string" column="customer_id" precision="0" scale="0" nullable="true"/>
     <field name="previous_pause_id" type="integer" column="previous_pause_id" precision="0" scale="0" nullable="true"/>
     <field name="unknow_field" type="string" column="unknow_field" precision="0" scale="0" nullable="true"/>
+    <field name="next_call_date" type="datetime" column="next_call_date" precision="0" scale="0" nullable="true"/>
+    <field name="assigned_agent_login" type="string" column="assigned_agent_login" precision="0" scale="0" nullable="true" />
     <many-to-one field="action" target-entity="CallBundle\Entity\Action" inversed-by="calls" fetch="LAZY">
       <cascade>
         <cascade-persist/>

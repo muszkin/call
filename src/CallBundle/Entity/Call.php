@@ -66,6 +66,10 @@ class Call
 
     private $unknow_field;
 
+    private $next_call_date;
+
+    private $assigned_agent_login;
+
     /**
      * Get callId
      *
@@ -662,5 +666,37 @@ class Call
     public function setCustomerId($customer_id)
     {
         $this->customer_id = $customer_id;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNextCallDate()
+    {
+        return $this->next_call_date;
+    }
+
+    /**
+     * @param mixed $next_call_date
+     */
+    public function setNextCallDate($next_call_date)
+    {
+        $this->next_call_date = $next_call_date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAssignedAgentLogin()
+    {
+        return $this->assigned_agent_login;
+    }
+
+    /**
+     * @param mixed $assigned_agent_login
+     */
+    public function setAssignedAgentLogin($assigned_agent_login)
+    {
+        $this->assigned_agent_login = $assigned_agent_login;
     }
 }
